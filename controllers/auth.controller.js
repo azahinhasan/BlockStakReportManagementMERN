@@ -25,10 +25,10 @@ const signIn = async (req, res) => {
   try {
       let user = await User.findOne({ email: req.body.email });
    
-      if (!user) return res.status(404).json({ error: "User not found" });
+      if (!user) return res.status(404).json({  success: false,message: "User not found" });
      
       if (!user.authenticate(req.body.password)) {
-          return res.status(401).send({ error: "Email and password don't match. " });
+          return res.status(401).send({  success: false,message: "Email and password don't match. " });
       }
       const token = jwt.sign({ _id: user._id },config.JWT_SECRET,{ expiresIn:"1h"});
       res.cookie("token", token, { expires: new Date(Date.now()+60*60*1000)}); //expiring cookie in 1h
@@ -55,6 +55,11 @@ const signIn = async (req, res) => {
  */
 const signOut = (req, res) => {
   res.clearCookie("token");
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+    }
+  });
   return res.status(200).json({ success: true, message: "signed out" });
 };
 
