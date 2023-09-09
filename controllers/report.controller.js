@@ -1,6 +1,4 @@
 const Report = require("../models/report.model");
-const config = require("../config");
-const jwt = require("jsonwebtoken");
 
 /**
  * @namespace ReportController
@@ -51,7 +49,7 @@ const getReportByID = async (req, res) => {
       .json({ success: true, message: "Data Found Successfully", data: report });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ success: false, message: "Something Want Wrong!" });
+    res.status(400).json({ success: false, message: "Something Want Wrong or invalid reportID!" });
   }
 };
 
@@ -98,7 +96,7 @@ const deleteReport = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Report deleted" });
   } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
+    res.status(400).json({ success: false, message:"Something Want Wrong or invalid reportID!" });
   }
 };
 
@@ -112,7 +110,7 @@ const updateReport = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Report updated", data: report });
   } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
+    res.status(400).json({ success: false,message: "Something Want Wrong or invalid reportID!" });
   }
 };
 
