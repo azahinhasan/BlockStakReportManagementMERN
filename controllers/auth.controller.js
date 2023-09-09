@@ -2,7 +2,8 @@ const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 //const expressJwt = require("express-jwt");
 const config = require("../config");
-const session = require('express-session');
+
+
 
 /**
  * @namespace AuthController
@@ -29,10 +30,9 @@ const signIn = async (req, res) => {
       if (!user.authenticate(req.body.password)) {
           return res.status(401).send({ error: "Email and password don't match. " });
       }
-
       const token = jwt.sign({ _id: user._id },config.JWT_SECRET,{ expiresIn:"1h"});
-      res.cookie("token", token, { expires: new Date(Date.now()+60*60*1000)});
-      //req.session.token =token
+      res.cookie("token", token, { expires: new Date(Date.now()+60*60*1000)}); //expiring cookie in 1h
+      req.session.token = token //setup session
 
       return res.status(200).json({ success: true, message: "Authentication success", token});
   } catch (err) {

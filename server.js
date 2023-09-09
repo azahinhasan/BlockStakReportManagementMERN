@@ -34,15 +34,11 @@ mongoose
     app.use(cookieParser());
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
-    // app.use(session({
-    //   secret: 'your-secret-key', // Replace with a secure secret key
-    //   resave: false,
-    //   saveUninitialized: true,
-    //   cookie: {
-    //     secure: false, // Set to true if using HTTPS
-    //     maxAge: 3600000, // One hour in milliseconds
-    //   },
-    // }))
+    app.use(session({  //session configuration
+      secret: config.JWT_SECRET,
+      resave: false,
+      saveUninitialized: true
+    }))
 
     // Routes
     app.use("/api/report", reportRoutes);

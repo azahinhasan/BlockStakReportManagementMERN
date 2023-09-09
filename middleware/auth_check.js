@@ -28,11 +28,22 @@ const checkTokenValidity = async (req, res, next) => {
 
   jwt.verify(req.cookies.token, config.JWT_SECRET, (err, decodedToken) => {
     if (err) {
-      //token verification failed
-      return res.status(401).json({ success: false, message: "Unauthorized" });
+      //token verification failed or expired
+      if(req.session.token){ //checking session is running or not
+        const userId=jwt.decode(req.cookies.token)._id
+        const token = jwt.sign({ _id:userId },config.JWT_SECRET,{ expiresIn:"1h"}); //creating new token
+        res.cookie("token", token, { expires: new Date(Date.now()+60*60*1000)}); //expiring cookie in 1h
+        req.session.token = token
+        res.locals.userId = userId; //passing user id to next() function. In our case it's checkAuthorization()
+      }
+      else{
+        return res.status(401).json({ success: false, message: "Unauthorized" });
+      }
+    }
+    else{
+      res.locals.userId = decodedToken._id; //passing user id to next() function. In our case it's checkAuthorization()
     }
 
-    res.locals.userId = decodedToken._id; //passing user id to next() function. In our case it's checkAuthorization()
     next();
   });
 };
