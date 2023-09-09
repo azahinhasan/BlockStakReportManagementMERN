@@ -37,8 +37,8 @@ With the following data in the body
 
 ```
  {
- "name":"test",
- "email":"test@test.com",
+ "name":"test_user",
+ "email":"test_user@test.com",
  "password":"123456",
  "is_admin":true,
  "favorite_colors":["black"]
@@ -54,8 +54,8 @@ If created successfully:
   "success": true,
   "message": "User created",
   "data": {
-      "name": "test",
-      "email": "test@test.com"
+      "name": "test_user",
+      "email": "test_user@test.com"
   }
 }
 ```
@@ -78,7 +78,7 @@ With the following data in the body
 
 ```
 {
- "email":"test@test.com",
+ "email":"test_user@test.com",
  "password":"123456"
 }
 ```
@@ -117,3 +117,276 @@ The token will be removed from the cookie and the session will be destroyed.
 }
 ```
 
+## Report
+
+API related to Report.
+ <br/>
+
+`Note: For successfully report create,delete,update and get report by Id ,make sure user is logged in and also admin. Get all reports not required user type admin.`
+
+### Create new Report.
+
+User can create a new Report by this api.
+
+#### Request
+
+`POST /api/report`
+
+With the following data in the body
+
+```
+ {
+ "name":"test",
+ "email":"test@test.com",
+ "password":"123456",
+ "is_admin":true,
+ "favorite_colors":["black"]
+}
+```
+
+#### Response
+
+If created successfully:
+
+```
+{
+    "success": true,
+    "message": "Created Successfully",
+    "data": {
+        "favorite_colors": [
+            "black"
+        ],
+        "_id": "64fca04a73271935707b618e",
+        "name": "test",
+        "email": "test@test.com",
+        "__v": 0
+    }
+}
+```
+If there is no cookie:
+
+```
+{
+    "success": false,
+    "message": "No token found."
+}
+```
+If there token is invalid or expired:
+
+```
+{
+    "success": false,
+    "message": "Unauthorized"
+}
+```
+If user is not `Admin`:
+
+```
+{
+    "success": false,
+    "message": "Unauthorized to access"
+}
+```
+
+### Get all Reports.
+
+User can get list of reports.
+
+#### Request
+
+`GET /api/report`
+
+#### Response
+
+If successfully data found:
+
+```
+{
+    "success": true,
+    "message": "Data Found",
+    "data": [
+        {
+            "favorite_colors": [
+                "black"
+            ],
+            "_id": "64fca04a73271935707b618e",
+            "name": "test",
+            "email": "test@test.com",
+            "__v": 0
+        }
+    ]
+}
+```
+If there is no cookie:
+
+```
+Same as Create new Report.
+```
+If there token is invalid or expired:
+
+```
+Same as Create new Report.
+```
+
+### Get Report by ID.
+
+User can find a report by its ID.
+
+#### Request
+
+`GET /api/report/:reportId`
+
+#### Response
+
+If matched found:
+
+```
+{
+    "success": true,
+    "message": "Data Found Successfully",
+    "data": {
+        "favorite_colors": [
+            "black"
+        ],
+        "_id": "64fca04a73271935707b618e",
+        "name": "test",
+        "email": "test@test.com",
+        "__v": 0
+    }
+}
+```
+If not matched found:
+
+```
+{
+    "success": false,
+    "message": "No match found"
+}
+```
+
+If there is no cookie:
+
+```
+Same as Create new Report.
+```
+If there token is invalid or expired:
+
+```
+Same as Create new Report.
+```
+If user is not `Admin`:
+
+```
+Same as Create new Report.
+```
+
+### Update Report.
+
+User can update report by this api.
+
+#### Request
+
+`PUT /api/report/:reportId`
+With the following data in the body
+
+```
+{
+ "name":"test_report",
+ "email":"test_report@test.com",
+ "password":"123456",
+ "is_admin":true,
+ "favorite_colors":["black"]
+}
+```
+
+#### Response
+
+If matched found and updated:
+
+```
+{
+    "success": true,
+    "message": "Report updated",
+    "data": {
+        "favorite_colors": [
+            "black"
+        ],
+        "_id": "64fca04a73271935707b618e",
+        "name": "test",
+        "email": "test@test.com",
+        "__v": 0
+    }
+}
+```
+If not matched found:
+
+```
+{
+    "success": false,
+    "message": "No match found"
+}
+```
+
+If there is no cookie:
+
+```
+Same as Create new Report.
+```
+If there token is invalid or expired:
+
+```
+Same as Create new Report.
+```
+If user is not `Admin`:
+
+```
+Same as Create new Report.
+```
+
+### Delete Report.
+
+User can delete specific report.
+
+#### Request
+
+`DELETE /api/report/:reportId`
+
+#### Response
+
+If matched found and deleted:
+
+```
+{
+    "success": true,
+    "message": "Report deleted"
+}
+```
+If not matched found:
+
+```
+{
+    "success": false,
+    "message": "No match found"
+}
+```
+
+If there is no cookie:
+
+```
+Same as Create new Report.
+```
+If there token is invalid or expired:
+
+```
+Same as Create new Report.
+```
+If user is not `Admin`:
+
+```
+Same as Create new Report.
+```
+
+
+---
+
+## Some information
