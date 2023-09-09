@@ -18,18 +18,16 @@ const UserSchema = new mongoose.Schema({
     type: String,
   },
   address: {
-    type: String,
-    required: [true, "Please enter address "],
+    type: String
   },
   phone: {
-    type: String,
-    required: [true, "Please enter phone "],
+    type: String
   },
   profession: {
     type: String,
   },
   favorite_colors: [String],
-  isAdmin: {
+  is_admin: {
     type: Boolean,
     default: false,
   },

@@ -8,7 +8,7 @@ const User = require("../models/user.model");
  * @memberof UserController
  * @async
  * @method
- * @description Create a new user.With this information they can login to the system.
+ * @description Create/register a new user.With this information they will able to login to the system.
  * @param {object} req - request object.
  * @param {object} res - response object.
  * @requires ../models/user.model

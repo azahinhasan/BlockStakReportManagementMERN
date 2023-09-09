@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
+const session = require('express-session');
 
 // Import Configuration
 const config = require("./config");
@@ -23,6 +24,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify:false,
   })
   .then(() => {
     console.log("✅ Connected to MongoDB");
@@ -32,6 +34,15 @@ mongoose
     app.use(cookieParser());
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
+    // app.use(session({
+    //   secret: 'your-secret-key', // Replace with a secure secret key
+    //   resave: false,
+    //   saveUninitialized: true,
+    //   cookie: {
+    //     secure: false, // Set to true if using HTTPS
+    //     maxAge: 3600000, // One hour in milliseconds
+    //   },
+    // }))
 
     // Routes
     app.use("/api/report", reportRoutes);

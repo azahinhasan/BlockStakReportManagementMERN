@@ -2,7 +2,7 @@
   "name": "blockstakreportmanagementmern",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js", 
+  "main": "server.js",
   "scripts": {
     "dev": "NODE_ENV=dev nodemon --legacy-watch server.js",
     "docs": "./node_modules/.bin/jsdoc -c jsdoc.json"
@@ -26,6 +26,7 @@
     "dotenv": "16.3.1",
     "express": "4.18.2",
     "express-jwt": "6.0.0",
+    "express-session": "^1.17.3",
     "jsdoc": "4.0.2",
     "jsonwebtoken": "8.5.1",
     "mongoose": "5.13.2",
