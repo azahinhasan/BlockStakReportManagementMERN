@@ -27,29 +27,42 @@ const checkTokenValidity = async (req, res, next) => {
   }
 
   jwt.verify(req.cookies.token, config.JWT_SECRET, (err, decodedToken) => {
-    if (err) {
-      //token verification failed or expired
-      if(req.session.token){ //checking session is running or not
-        const userId=jwt.decode(req.cookies.token)?._id
-        if(userId){ //will process only if userId is valid string.
-          const token = jwt.sign({ _id:userId },config.JWT_SECRET,{ expiresIn:"1h"}); //creating new token
-          res.cookie("token", token, { expires: new Date(Date.now()+60*60*1000)}); //expiring cookie in 1h
-          req.session.token = token
-          res.locals.userId = userId; //passing user id to next() function. In our case it's checkAuthorization()
+    
+    try{
+      if (err) {
+        //token verification failed or expired
+        if(req.session.token){ //checking session is running or not
+    
+          const userId=jwt.decode(req.cookies.token)?._id
+
+          if(userId){ //will process only if userId is valid string.
+            const token = jwt.sign({ _id:userId },config.JWT_SECRET,{ expiresIn:"1h"}); //creating new token
+            res.cookie("token", token, { expires: new Date(Date.now()+60*60*1000)}); //expiring cookie in 1h
+            req.session.token = token
+            res.locals.userId = userId; //passing user id to next() function. In our case it's checkAuthorization()
+          }
+          else{
+            return res.status(401).json({ success: false, message: "Invalid token" });
+          }
+
         }
         else{
-          return res.status(401).json({ success: false, message: "Invalid token" });
+          return res.status(401).json({ success: false, message: "No session found" });
         }
       }
       else{
-        return res.status(401).json({ success: false, message: "Unauthorized" });
+        res.locals.userId = decodedToken._id; //passing user id to next() function. In our case it's checkAuthorization()
+        if(!req.session.token){
+          req.session.token = req.cookies.token //reactivating session 
+        }
       }
+  
+      next();
     }
-    else{
-      res.locals.userId = decodedToken._id; //passing user id to next() function. In our case it's checkAuthorization()
+    catch(error){
+      console.log(error);
+      return res.status(401).json({ success: false, message: "Invalid token" });
     }
-
-    next();
   });
 };
 
@@ -67,13 +80,19 @@ const checkTokenValidity = async (req, res, next) => {
  * @returns {JSON} - if user is admin then function will redirect to next function else unauthorized error.
  */
 const checkAuthorization = async (req, res, next) => {
-  const user = await User.findById(res.locals.userId);
-  if (!user.is_admin) {
-    return res
-      .status(401)
-      .json({ success: false, message: "Unauthorized to access" });
+  try{
+    const user = await User.findById(res.locals.userId);
+    if (!user.is_admin) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Unauthorized to access" });
+    }
+    next();
   }
-  next();
+  catch(error){
+    console.log(error);
+    res.status(400).json({ success: false, message: "Something Want Wrong or invalid userId!" });
+  }
 };
 
 module.exports = { checkTokenValidity, checkAuthorization };

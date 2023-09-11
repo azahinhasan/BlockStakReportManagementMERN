@@ -100,6 +100,16 @@ const deleteReport = async (req, res) => {
   }
 };
 
+/**
+ * @memberof ReportController
+ * @async
+ * @method
+ * @description Update a report.
+ * @param {object} req - request object.
+ * @param {object} res - response object.
+ * @requires ../models/report.model
+ * @returns {JSON} - if success returns the object(contains details of updated report) as data else error.
+ */
 const updateReport = async (req, res) => {
   try {
     const report = await Report.findByIdAndUpdate(req.params.reportId, req.body);
