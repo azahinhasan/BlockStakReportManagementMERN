@@ -34,8 +34,8 @@ const signIn = async (req, res) => {
       req.session.token = token //saving token into session will help us to detect is session running or not.
 
       return res.status(200).json({ success: true, message: "Authentication success", token});
-  } catch (err) {
-      console.log(err);
+  } catch (error) {
+      console.log(error);
       return res.status(403).json({ success: false, message: "Authentication failed" });
   }
 };
@@ -54,9 +54,9 @@ const signIn = async (req, res) => {
  */
 const signOut = (req, res) => {
   res.clearCookie("token"); //removing cookie
-  req.session.destroy((err) => {
-    if (err) {
-      console.error('Error destroying session:', err); //removing session
+  req.session.destroy((error) => {
+    if (error) {
+      console.error('Error destroying session:', error); //removing session
     }
   });
   return res.status(200).json({ success: true, message: "signed out" });
