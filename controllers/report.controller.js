@@ -66,7 +66,7 @@ const getReportByID = async (req, res) => {
 const createReport = async (req, res) => {
   try {
     const newData = await Report.create(req.body);
-   // newData.save();
+    newData.save();
     res
       .status(200)
       .json({ success: true, message: "Created Successfully", data: newData });
@@ -113,6 +113,7 @@ const deleteReport = async (req, res) => {
 const updateReport = async (req, res) => {
   try {
     const report = await Report.findByIdAndUpdate(req.params.reportId, req.body);
+    report.save();
     if (!report) {
       return res.status(404).json({ success: false, message: "No data found" });
     }

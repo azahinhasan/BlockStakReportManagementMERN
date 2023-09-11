@@ -38,10 +38,11 @@ const checkTokenValidity = async (req, res, next) => {
           if(userId){ //will process only if userId is valid string.
             const token = jwt.sign({ _id:userId },config.JWT_SECRET,{ expiresIn:"1h"}); //creating new token
             res.cookie("token", token, { expires: new Date(Date.now()+60*60*1000)}); //expiring cookie in 1h
-            req.session.token = token
+            req.session.token = token; //resetting session
             res.locals.userId = userId; //passing user id to next() function. In our case it's checkAuthorization()
           }
           else{
+            //if there is no userID in decoded token object
             return res.status(401).json({ success: false, message: "Invalid token" });
           }
 
@@ -53,6 +54,7 @@ const checkTokenValidity = async (req, res, next) => {
       else{
         res.locals.userId = decodedToken._id; //passing user id to next() function. In our case it's checkAuthorization()
         if(!req.session.token){
+          //if cookies have valid token but no session active information.
           req.session.token = req.cookies.token //reactivating session 
         }
       }
@@ -83,6 +85,7 @@ const checkAuthorization = async (req, res, next) => {
   try{
     const user = await User.findById(res.locals.userId);
     if (!user.is_admin) {
+      //if user is not admin
       return res
         .status(401)
         .json({ success: false, message: "Unauthorized to access" });
