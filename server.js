@@ -29,7 +29,6 @@ mongoose
   .then(() => {
     console.log("✅ Connected to MongoDB");
 
-    // Middleware
     app.use(cors());
     app.use(cookieParser());
     app.use(express.json());
@@ -47,7 +46,7 @@ mongoose
 
     // Root Route
     app.get("/", (req, res) => {
-      res.status(200).json({ message: "Welcome to Backend!" });
+      res.status(200).json({ message: "Welcome to BlockStakReportManagementMERN - backend!" });
     });
 
 

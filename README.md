@@ -185,7 +185,7 @@ If there is no cookie:
     "message": "No token found."
 }
 ```
-If their token is invalid or expired:
+If the token is invalid or expired:
 
 ```
 {
@@ -283,7 +283,7 @@ If there is no cookie:
 ```
 Same as Creating a new Report.
 ```
-If their token is invalid or expired:
+If the token is invalid or expired:
 
 ```
 Same as Creating a new Report.
@@ -346,7 +346,7 @@ If there is no cookie:
 ```
 Same as Creating a new Report.
 ```
-If their token is invalid or expired:
+If the token is invalid or expired:
 
 ```
 Same as Creating a new Report.
@@ -389,7 +389,7 @@ If there is no cookie:
 ```
 Same as Creating a new Report.
 ```
-If their token is invalid or expired:
+If the token is invalid or expired:
 
 ```
 Same as Creating a new Report.
