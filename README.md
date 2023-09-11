@@ -1,10 +1,13 @@
-# BlockStak - Report Management with MERN
+# BlockStak task- Report Management with MERN
 
 ---
-
+# Start
+Some required steps to run this app.
 ## Install
 
-- Download Node.js into the system and install
+- Download Node.js into the system and install if system donn't have it.
+- Clone from github or download as zip. 
+- Now user can find a folder called `BlockStakReportManagementMERN`. Go into the folder.
 - Run the following command in the root directory:
   `npm install`
 
@@ -35,7 +38,7 @@ After registration user can log in with this information.
 `POST /api/user`
 
 With the following data in the body
-
+As admin:
 ```
  {
  "name":"test_user",
@@ -45,10 +48,20 @@ With the following data in the body
  "favorite_colors":["black"]
 }
 ```
+As normal user:
+```
+ {
+ "name":"test_user2",
+ "email":"test_user2@test.com",
+ "password":"123456",
+ "is_admin":false,
+ "favorite_colors":["red"]
+}
+```
 
 #### Response
 
-If created successfully:
+If created successfully(response of as admin):
 
 ```
  {
