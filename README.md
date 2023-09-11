@@ -1,11 +1,11 @@
-# BlockStak task- Report Management with MERN
+# BlockStak task - Report Management with MERN
 
 ---
 # Start
 Some required steps to run this app.
 ## Install
 
-- Download Node.js into the system and install if system donn't have it.
+- Download Node.js into the system and install if the system doesn't have it.
 - Clone from github or download as zip. 
 - Now user can find a folder called `BlockStakReportManagementMERN`. Go into the folder.
 - Run the following command in the root directory:
@@ -15,15 +15,15 @@ Some required steps to run this app.
 
 - Run the following command in the root directory:
   `npm run dev`
-- Access the app from port: 5003 (http://localhost:5003/). Users can change ports from env file.
-- Optional: User can run this command `npm run docs` to create jsDoc documentation. After running this command there will be a new folder call `docs` created in root. From there user have to open `index.html` file into any browser.
+- Access the app from port: 5003 (http://localhost:5003/). Users can change ports from the env file.
+- Optional: The user can run this command `npm run docs` to create jsDoc documentation. After running this command there will be a new folder call `docs` created in root. From there user have to open `index.html` file into any browser.
 
 
 ---
 
 # REST API
 
-The REST API to the example app is described below.
+The REST API for the example app is described below.
 
 ## User
 
@@ -82,13 +82,13 @@ API related to signIn and signOut.
 
 After login user can access other APIs. Because successfully login there will be a token set into cookies.
 <br/>
-Need this token to access other APIs.
+Will need this token to access other APIs.
 
 #### Request
 
 `POST /api/auth/signin`
 
-With the following data in the body
+With the following data in the body:
 
 ```
 {
@@ -136,17 +136,17 @@ The token will be removed from the cookie and the session will be destroyed.
 API related to Report.
  <br/>
 
-`Note: For successfully report create,delete,update and get report by Id ,make sure user is logged in and also admin. Get all reports not required user type admin.`
+`Note: For successfully report create, delete, update and get report by Id, make sure the user is logged in and also admin. Get all reports not required user type admin.`
 
-### Create new Report.
+### Create a new Report.
 
-User can create a new Report by this api.
+Users can create a new Report with this API.
 
 #### Request
 
 `POST /api/report`
 
-With the following data in the body
+With the following data in the body:
 
 ```
  {
@@ -185,7 +185,7 @@ If there is no cookie:
     "message": "No token found."
 }
 ```
-If there token is invalid or expired:
+If their token is invalid or expired:
 
 ```
 {
@@ -193,7 +193,7 @@ If there token is invalid or expired:
     "message": "Unauthorized"
 }
 ```
-If user is not `Admin`:
+If the user is not `Admin`:
 
 ```
 {
@@ -204,7 +204,7 @@ If user is not `Admin`:
 
 ### Get all Reports.
 
-User can get list of reports.
+Users can get the list of reports.
 
 #### Request
 
@@ -234,7 +234,7 @@ If successfully data found:
 If there is no cookie:
 
 ```
-Same as Create new Report.
+Same as Creating a new Report.
 ```
 If there token is invalid or expired:
 
@@ -281,22 +281,22 @@ If not matched found:
 If there is no cookie:
 
 ```
-Same as Create new Report.
+Same as Creating a new Report.
 ```
-If there token is invalid or expired:
+If their token is invalid or expired:
 
 ```
-Same as Create new Report.
+Same as Creating a new Report.
 ```
-If user is not `Admin`:
+If the user is not `Admin`:
 
 ```
-Same as Create new Report.
+Same as Creating a new Report.
 ```
 
 ### Update Report.
 
-User can update report by this api.
+Users can update reports by this API.
 
 #### Request
 
@@ -344,22 +344,22 @@ If not matched found:
 If there is no cookie:
 
 ```
-Same as Create new Report.
+Same as Creating a new Report.
 ```
-If there token is invalid or expired:
+If their token is invalid or expired:
 
 ```
-Same as Create new Report.
+Same as Creating a new Report.
 ```
-If user is not `Admin`:
+If the user is not `Admin`:
 
 ```
-Same as Create new Report.
+Same as Creating a new Report.
 ```
 
 ### Delete Report.
 
-User can delete specific report.
+Users can delete specific reports.
 
 #### Request
 
@@ -387,17 +387,17 @@ If not matched found:
 If there is no cookie:
 
 ```
-Same as Create new Report.
+Same as Creating a new Report.
 ```
-If there token is invalid or expired:
+If their token is invalid or expired:
 
 ```
-Same as Create new Report.
+Same as Creating a new Report.
 ```
-If user is not `Admin`:
+If the user is not `Admin`:
 
 ```
-Same as Create new Report.
+Same as Creating a new Report.
 ```
 
 
@@ -405,6 +405,6 @@ Same as Create new Report.
 
 ## Additional Information
 - I encountered minor session-related issues, which I resolved by using the `express-session` package.
-- After a successful login, a token is generated with a one-hour expiration time and stored in cookies. The token is also saved in the session to track its activity. User can find this code in the signIn function located in `controller/auth.controller.js`.
+- After a successful login, a token is generated with a one-hour expiration time and stored in cookies. The token is also saved in the session to track its activity. Users can find this code in the signIn function located in `controller/auth.controller.js`.
 - The checkTokenValidity middleware, found in `middleware/auth_check.middleware.js`, verifies the session's activity status. If the token has expired, the system checks if a session is present. If a session exists, it means the session is active, and the middleware creates a new token and stores it in cookies.
 - Passwords are hashed using the crypto library. All related functions can be found in the `models/user.model.js` file.
