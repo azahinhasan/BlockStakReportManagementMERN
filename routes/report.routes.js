@@ -1,5 +1,5 @@
 const reportCtrl = require("../controllers/report.controller");
-const authCheck = require("../middleware/auth_check");
+const authCheck = require("../middleware/auth_check.middleware");
 const express = require("express");
 const router = express.Router();
 

@@ -38,7 +38,7 @@ const checkTokenValidity = async (req, res, next) => {
           res.locals.userId = userId; //passing user id to next() function. In our case it's checkAuthorization()
         }
         else{
-          return res.status(401).json({ success: false, message: "Unauthorized" });
+          return res.status(401).json({ success: false, message: "Invalid token" });
         }
       }
       else{
