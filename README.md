@@ -15,8 +15,10 @@ Some required steps to run this app.
 
 - Run the following command in the root directory:
   `npm run dev`
-- Access the app from port: 5003 (http://localhost:5003/). Users can change ports from the env file.
+- Access the app from port: 5003 (http://localhost:5003/).
 - Optional: The user can run this command `npm run docs` to create jsDoc documentation. After running this command there will be a new folder call `docs` created in root. From there user have to open `index.html` file into any browser.
+
+`Note: User can customize the MongoDB connection URI, JWT secret, and port settings by editing the 'config/index.js' file. Alternatively, user can create a '.env' file in the project's root directory and define the modified values there using the following environment variable names: 'MONGO_URI', 'JWT_SECRET', and 'PORT'.`
 
 
 ---
