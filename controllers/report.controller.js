@@ -119,7 +119,7 @@ const updateReport = async (req, res) => {
     }
     res
       .status(200)
-      .json({ success: true, message: "Report updated", data: report });
+      .json({success: true, message: "Report updated"});
   } catch (error) {
     res.status(400).json({ success: false,message: "Something Want Wrong or invalid reportID!" });
   }

@@ -36,7 +36,7 @@ const checkTokenValidity = async (req, res, next) => {
           const userId=jwt.decode(req.cookies.token)?._id
 
           if(userId){ //will process only if userId is valid string.
-            const token = jwt.sign({ _id:userId },config.JWT_SECRET,{ expiresIn:"1h"}); //creating new token
+            const token = jwt.sign({ _id:userId },config.JWT_SECRET,{ expiresIn:config.TOKEN_EXPIRE}); //creating new token
             res.cookie("token", token, { expires: new Date(Date.now()+60*60*1000)}); //expiring cookie in 1h
             req.session.token = token; //resetting session
             res.locals.userId = userId; //passing user id to next() function. In our case it's checkAuthorization()

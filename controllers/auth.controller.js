@@ -29,7 +29,7 @@ const signIn = async (req, res) => {
       if (!user.authenticate(req.body.password)) {
           return res.status(401).send({  success: false,message: "Email and password don't match. " }); //wrong password
       }
-      const token = jwt.sign({ _id: user._id },config.JWT_SECRET,{ expiresIn:"1h"}); //creating token with 1h expires
+      const token = jwt.sign({ _id: user._id },config.JWT_SECRET,{ expiresIn:config.TOKEN_EXPIRE}); //creating token with 1h expires
       res.cookie("token", token, { expires: new Date(Date.now()+60*60*1000)}); //pushing token into cookies which will expiring cookie in 1h
       req.session.token = token //saving token into session will help us to detect is session running or not.
 
