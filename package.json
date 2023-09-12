@@ -2,9 +2,10 @@
   "name": "blockstakreportmanagementmern",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=dev nodemon --legacy-watch server.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "docs": "./node_modules/.bin/jsdoc -c jsdoc.json"
   },
   "repository": {
@@ -31,12 +32,5 @@
     "jsonwebtoken": "8.5.1",
     "mongoose": "5.13.2",
     "nodemon": "2.0.22"
-  },
-  "devDependencies": {
-    "win-node-env": "0.6.1"
-  },
-  "engines": {
-    "node": "18.x"
   }
-  
 }
