@@ -48,7 +48,7 @@ const checkTokenValidity = async (req, res, next) => {
 
         }
         else{
-          return res.status(401).json({ success: false, message: "No session found" });
+          return res.status(401).json({ success: false, message: "Invalid token or session" });
         }
       }
       else{

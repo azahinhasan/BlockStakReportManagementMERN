@@ -20,7 +20,7 @@ Some required steps to run this app.
 - Access the app from port: 5003 (http://localhost:5003).
 - Optional: The user can run this command `npm run docs` to create jsDoc documentation. After running this command there will be a new folder call `docs` created in root. From there user have to open `index.html` file into any browser.
 
-`Note: User can customize the MongoDB connection URI, JWT secret, and port settings by editing the 'config/index.js' file. Alternatively, user can create a '.env' file in the project's root directory and define the modified values there using the following environment variable names: 'MONGO_URI', 'JWT_SECRET', and 'PORT'.`
+`Note: User can customize the MongoDB connection URI, JWT secret, and port settings by editing the 'config/index.js' file. Alternatively, user can create a '.env' file in the project's root directory and define the modified values there using the following environment variable names: 'MONGO_URI', 'JWT_SECRET','TOKEN_EXPIRE', and 'PORT'.`
 
 ## For Deployed version
 - If user prefer not to run the application locally, they can access all APIs using the following URI:<br/>
@@ -413,5 +413,5 @@ Same as Creating a new Report.
 ## Additional Information
 - I encountered minor session-related issues, which I resolved by using the `express-session` package.
 - After a successful login, a token is generated with a one-hour expiration time and stored in cookies. The token is also saved in the session to track its activity. Users can find this code in the signIn function located in `controller/auth.controller.js`.
-- The checkTokenValidity middleware, found in `middleware/auth_check.middleware.js`, verifies the session's activity status. If the token has expired, the system checks if a session is present. If a session exists, it means the session is active, and the middleware creates a new token and stores it in cookies.
+- The checkTokenValidity middleware, found in `middleware/auth_check.middleware.js`, verifies the session's activity status. If the token has expired, the system checks if a session is present. If a session exists, it means the session is active, and the middleware creates a new token and stores it in cookies. Also user can change token expire time from `config/index.js`.
 - Passwords are hashed using the crypto library. All related functions can be found in the `models/user.model.js` file.
