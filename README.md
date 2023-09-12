@@ -2,7 +2,7 @@
 
 ---
 # Start
-Some required steps to run this app.
+Some required steps to run or use this app.
 
 ## For local
 ### Install
