@@ -3,7 +3,9 @@
 ---
 # Start
 Some required steps to run this app.
-## Install
+
+## For local
+### Install
 
 - Download Node.js into the system and install if the system doesn't have it.
 - Clone from github or download as zip. 
@@ -11,15 +13,18 @@ Some required steps to run this app.
 - Run the following command in the root directory:
   `npm install`
 
-## Run the app
+### Run the app
 
 - Run the following command in the root directory:
   `npm run dev`
-- Access the app from port: 5003 (http://localhost:5003/).
+- Access the app from port: 5003 (http://localhost:5003).
 - Optional: The user can run this command `npm run docs` to create jsDoc documentation. After running this command there will be a new folder call `docs` created in root. From there user have to open `index.html` file into any browser.
 
 `Note: User can customize the MongoDB connection URI, JWT secret, and port settings by editing the 'config/index.js' file. Alternatively, user can create a '.env' file in the project's root directory and define the modified values there using the following environment variable names: 'MONGO_URI', 'JWT_SECRET', and 'PORT'.`
 
+## For Deployed version
+- If user prefer not to run the application locally, they can access all APIs using the following URI:<br/>
+  https://block-stak-report-management-mern.vercel.app
 
 ---
 
